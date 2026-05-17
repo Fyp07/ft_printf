@@ -42,6 +42,8 @@ int    ft_printf(const char *str, ...)
                                 cont += ft_printhex(va_arg(args, unsigned int));
                         else if (str[i + 1] == 'X')
                                 cont += ft_printbighex(va_arg(args, unsigned int));
+                        else if (str[i + 1] == 'p')
+                                cont += ft_printptr(va_arg(args, void *));
                         i++;
                         i++;
                 }
@@ -55,8 +57,8 @@ int    ft_printf(const char *str, ...)
         return (cont);
 }
 
-int     main()
+int	main(void)
 {
-        ft_printf("Nome: %x", 125);
+        ft_printf("%d", -2147483648);
         return (0);
 }

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
+#include <stdint.h>
 
 int    ft_printchar(char c)
 {
@@ -23,6 +23,8 @@ int	ft_printstr(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (ft_printstr("(null)"));
 	while (str[i])
 		ft_printchar(str[i++]);
 	return (i);
@@ -63,7 +65,7 @@ int	ft_printhex(unsigned int n)
 	if (n > 9)
 		cont += ft_printhex(n / 16);
 	cont += ft_printchar("0123456789abcdef"[n % 16]);
-	return cont;
+	return (cont);
 }
 
 int	ft_printbighex(unsigned int n)
@@ -72,7 +74,19 @@ int	ft_printbighex(unsigned int n)
 
 	cont = 0;
 	if (n > 9)
-		cont += ft_printhex(n / 16);
+		cont += ft_printbighex(n / 16);
 	cont += ft_printchar("0123456789ABCDEF"[n % 16]);
-	return cont;
+	return (cont);
+}
+
+int	ft_printptr(void *ptr)
+{
+	int	cont;
+
+	cont = 2;
+	if (!ptr)
+		return(ft_printstr("(nil)"));
+	write(1, "0x", 2);
+	cont += ft_printhex((uintptr_t)ptr);
+	return (cont);
 }
