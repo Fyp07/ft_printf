@@ -36,19 +36,43 @@ int	ft_printnbr(long n)
 	if (n < 0)
 	{
 		cont += ft_printchar('-');
-		n *= -n;
+		n = -n;
 	}
 	if (n > 9)
 		cont += ft_printnbr(n / 10);
 	cont += ft_printchar((n % 10) + 48);
-	
 	return (cont);
 }
 
-
-
-int	main()
+int	ft_printunsnbr(unsigned int n)
 {
-	ft_printnbr(123);
-	return (0);
+	int	cont;
+
+	cont = 0;
+	if (n > 9)
+		cont += ft_printunsnbr(n / 10);
+	cont += ft_printchar((n % 10) + 48);
+	return (cont);
+}
+
+int	ft_printhex(unsigned int n)
+{
+	int	cont;
+
+	cont = 0;
+	if (n > 9)
+		cont += ft_printhex(n / 16);
+	cont += ft_printchar("0123456789abcdef"[n % 16]);
+	return cont;
+}
+
+int	ft_printbighex(unsigned int n)
+{
+	int	cont;
+
+	cont = 0;
+	if (n > 9)
+		cont += ft_printhex(n / 16);
+	cont += ft_printchar("0123456789ABCDEF"[n % 16]);
+	return cont;
 }
