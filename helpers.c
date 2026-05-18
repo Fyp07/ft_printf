@@ -6,16 +6,15 @@
 /*   By: fbarrada <fbarrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 18:38:41 by fbarrada          #+#    #+#             */
-/*   Updated: 2026/05/13 18:52:12 by fbarrada         ###   ########.fr       */
+/*   Updated: 2026/05/18 11:52:06 by fbarrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdint.h>
+#include "ft_printf.h"
 
-int    ft_printchar(char c)
+int	ft_printchar(char c)
 {
-        return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 
 int	ft_printstr(char *str)
@@ -33,7 +32,7 @@ int	ft_printstr(char *str)
 int	ft_printnbr(long n)
 {
 	int	cont;
-	
+
 	cont = 0;
 	if (n < 0)
 	{
@@ -57,36 +56,16 @@ int	ft_printunsnbr(unsigned int n)
 	return (cont);
 }
 
-int	ft_printhex(unsigned int n)
+int	ft_printhex(char str, unsigned int n)
 {
 	int	cont;
 
 	cont = 0;
 	if (n > 9)
-		cont += ft_printhex(n / 16);
-	cont += ft_printchar("0123456789abcdef"[n % 16]);
-	return (cont);
-}
-
-int	ft_printbighex(unsigned int n)
-{
-	int	cont;
-
-	cont = 0;
-	if (n > 9)
-		cont += ft_printbighex(n / 16);
-	cont += ft_printchar("0123456789ABCDEF"[n % 16]);
-	return (cont);
-}
-
-int	ft_printptr(void *ptr)
-{
-	int	cont;
-
-	cont = 2;
-	if (!ptr)
-		return(ft_printstr("(nil)"));
-	write(1, "0x", 2);
-	cont += ft_printhex((uintptr_t)ptr);
+		cont += ft_printhex(str, (n / 16));
+	if (str == 'x')
+		cont += ft_printchar("0123456789abcdef"[n % 16]);
+	else
+		cont += ft_printchar("0123456789ABCDEF"[n % 16]);
 	return (cont);
 }
