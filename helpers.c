@@ -6,7 +6,7 @@
 /*   By: fbarrada <fbarrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 18:38:41 by fbarrada          #+#    #+#             */
-/*   Updated: 2026/05/18 11:52:06 by fbarrada         ###   ########.fr       */
+/*   Updated: 2026/05/18 12:16:04 by fbarrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_printhex(char str, unsigned int n)
 	int	cont;
 
 	cont = 0;
-	if (n > 9)
+	if (n > 15)
 		cont += ft_printhex(str, (n / 16));
 	if (str == 'x')
 		cont += ft_printchar("0123456789abcdef"[n % 16]);
